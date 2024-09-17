@@ -1,0 +1,64 @@
+<!-- templates/registration/signup.html -->
+{% extends '../todo/base.html' %}
+
+{% block header %}
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 style="color: #A0C6FF;">Signup</h1>
+        <a href="{% url 'login' %}" style="color: #A0C6FF; text-decoration: none;">ログインに戻る</a>
+    </div>
+{% endblock header %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    <div class="form">
+        <div class="aa">
+            <label><b>ID</b>(メールアドレスを入力してください)</label>
+            <input type="text" name="username" class="id_ps2">
+        </div>
+        <div class="aa">
+            <label><b>Pass Word</b><br>(メールアドレスと似ていないものを設定してください)</label>
+            <input type="password" name="password1" class="id_ps2">
+        </div>
+        <div class="aa">
+            <label><b>Pass Word</b><br>(もう一度入力してください)</label>
+            <input type="password" name="password2" class="id_ps2">
+        </div>
+        <div class="ps">
+            <small>パスワードは８文字以上で設定してください</small>
+        </div>
+        <div style="margin: 10px 0;">
+            {% if form.errors %}
+            <span style="color: #5a8cf4;">利用できないユーザーIDやパスワードの可能性があります。入力内容を再度ご確認ください。</span>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary" style="background: #5a8cf4; border-color: #5a8cf4;">サインアップ</button>
+    </div>
+  </form>
+  <style>
+      .form {
+        width: 50vw;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .aa {
+        margin: 20px 0;
+      }
+      .aa label {
+        display: block;
+        margin-bottom: .5em;
+        color: #6E6D6D;
+      }
+      .ps {
+        margin: 10px 0;
+      }
+      .id_ps2 {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+        height: 8vh;
+        border: solid 2px#A0C6FF;
+        border-radius: 10px;
+      }
+  </style>
+{% endblock content %}

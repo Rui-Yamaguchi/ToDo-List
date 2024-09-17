@@ -1,0 +1,67 @@
+<!-- templates/registration/login.html -->
+{% extends '../todo/base.html' %}
+
+{% block header %}
+  <h1 style="color: #A0C6FF;">Login</h1>
+{% endblock header %}
+
+{% block content %}
+    <form method="post" class="form">
+        <div class="form">
+            <div class="aa">
+                <label >ユーザーID</label><br>
+                <input class="id_ps2" name="username">
+            </div>
+            <div class="aa">
+                <label >パスワード</label><br>
+                <input type="password" class="id_ps2" name="password">
+            </div>
+            {% csrf_token %}
+            {% for error in form.errors.values %}
+            <div style="margin: 10px 0;">
+                {{ error }}
+                <span>ユーザー名またはパスワードが間違っています</span>
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary" style="background: #5a8cf4; border-color: #5a8cf4;">ログインする</button>
+            <p class="mt-3"><a href="{% url 'signup' %}" class="signup-link" style="color: #6E6D6D; text-decoration: none;">新規会員登録がお済みでない方はこちら</a></p>
+        </div>
+    </form>
+  <style>
+    .errorlist {
+        display: none;
+    }
+    .signup-link:hover {
+        color: #5a8cf4 !important;
+    }
+    .form {
+        width: 50vw;
+        margin: 0 auto;
+        text-align: center;
+      }
+    .aa {
+        margin: 20px 0;
+      }
+    .aa label {
+        display: block;
+        color: #6E6D6D;
+    }
+      .ps {
+        margin: 10px 0;
+      }
+      .id_ps2 {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+        height: 8vh;
+        border: solid 2px#A0C6FF;
+        border-radius: 10px;
+      }
+      .mt-3 {
+        padding-top: 200px;
+      }
+  </style>
+{% endblock content %}
+
+{% block extra_css %}
+{% endblock %}

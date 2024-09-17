@@ -1,0 +1,34 @@
+{% extends 'todo/base.html' %}
+
+{% block header %}
+<h1 style="color: #A0C6FF;">Create / Edit</h1>
+{% endblock header %}
+
+{% block content %}
+<form action="" method="POST">{% csrf_token %}
+    <table class="table" style="color: #A0C6FF;">
+        <tr>
+            <th>{{ form.title.label_tag }}</th>
+            <td>{{ form.title }}</td>
+        </tr>
+        <tr>
+            <th>{{ form.description.label_tag }}</th>
+            <td>{{ form.description }}</td>
+        </tr>
+        <tr>
+            <th>{{ form.deadline.label_tag }}</th>
+            <td>
+                {{ form.deadline }}
+                <small class="form-text text-muted">日付は0000-00-00の形式で入力してください。</small>
+            </td>
+        </tr>
+    </table>
+    <a class="btn btn-outline-secondary" href="{% url 'list' %}" role="button">戻る</a>
+    <input class="btn btn-success" type="submit" value="送信" style="background: #5a8cf4; border-color: #5a8cf4;">
+</form>
+{% endblock content %}
+<style>
+table input {
+    color: #A0C6FF !important;
+}
+</style>

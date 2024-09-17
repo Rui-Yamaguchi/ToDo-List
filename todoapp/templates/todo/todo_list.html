@@ -1,0 +1,40 @@
+{% extends 'todo/base.html' %}
+
+{% block header %}
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h1 style="color: #A0C6FF;">Todo List</h1>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+            <a href="{% url 'logout' %}" style="color: #A0C6FF; text-decoration: none;">ログアウト</a>
+            <a class="btn btn-primary" href="{% url 'create' %}" style="background: #A0C6FF; color: #fff; border: none;">新規作成</a>
+        </div>
+    </div>
+{% endblock header %}
+
+{% block content %}
+<div class="shadow-sm p-3 mb-5 bg-white rounded">
+    <table class="table">
+        <thead>
+            <tr style="color: #6E6D6D; border-color: #C9E5FF; vertical-align: middle;">
+            <th scope="col" style="border-bottom: 2px solid #A0C6FF;">タイトル</th>
+            <th scope="col" style="border-bottom: 2px solid #A0C6FF;">締切日</th>
+            <th scope="col" style="border-bottom: 2px solid #A0C6FF;"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+        <tr style="color: #6E6D6D; border-color: #C9E5FF; vertical-align: middle;">
+            <td>{{ task.title }}</td>
+            <td>{{ task.deadline }}</td>
+            <td style="display: flex; flex-wrap: wrap;gap: 5px; justify-content: flex-end; align-items: center;">
+                <a href="{% url 'detail' task.pk %}" style="background: #A0C6FF; color: #fff; text-decoration: none; padding: 5px 10px; border-radius: 5px;">詳細</a>
+                <a href="{% url 'update' task.pk %}" style="background: #A0C6FF; color: #fff; text-decoration: none; padding: 5px 10px; border-radius: 5px;">編集</a>
+                <a href="{% url 'delete' task.pk %}" style="background: #A0C6FF; color: #fff; text-decoration: none; padding: 5px 10px; border-radius: 5px;">削除</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
+
